@@ -1,4 +1,5 @@
 import { Firebot } from "@crowbartools/firebot-custom-scripts-types";
+import switchSectionComponent from "./switch-section-component";
 
 interface Params { }
 
@@ -16,7 +17,17 @@ const script: Firebot.CustomScript<Params> = {
   getDefaultParameters: () => {
     return { };
   },
-  run: (runRequest) => { },
+  run: (runRequest) => {
+    runRequest.modules.uiExtensionManager.registerUIExtension({
+      id: "dennisontheinternet:switch-statement",
+      pages: [],
+      providers: {
+        components: [
+          switchSectionComponent
+        ]
+      }
+    })
+  },
 };
 
 export default script;
