@@ -1,0 +1,56 @@
+<setting-container header="Switch Value">
+    <firebot-input model="effect.value" placeholder-text="Enter Value" use-text-area="true" rows="4" cols="40"
+        menu-position="under" />
+</setting-container>
+
+<setting-container header="Cases" pad-top="true">
+
+    <div ui-sortable="sortableOptions" class="eos-container" ng-model="effect.cases">
+        <div ng-repeat="switchCase in effect.cases" style="margin-bottom: 15px;">
+            <plugin-switch-section label="switchCase.label" header="{{switchCase.fallthrough ? 'Fallthrough' : 'Case'}}"
+                auto-label="getAutomaticLabel(switchCase)" initially-open="$index === 0 && openFirst">
+                <div style="margin-bottom: 15px;">
+                    <firebot-select options="{ compare: 'Compare number or text', range: 'Number Range' }"
+                    selected="switchCase.type"></firebot-select>
+                </div>
+
+                <firebot-input input-title="Value" disable-variables="true" model="switchCase.value"
+                    placeholder-text="Enter expected value"
+                    ng-show="switchCase.type !== 'range'" style="margin-bottom: 15px;"></firebot-input>
+                <div ng-show="switchCase.type === 'range'" class="input-group" style="margin-bottom: 15px;">
+                    <span class="input-group-addon">Minimum</span>
+                    <input type="text" class="form-control" type="number" ng-model="switchCase.min">
+                    <span class="input-group-addon">Maximum</span>
+                    <input type="text" class="form-control" type="number" ng-model="switchCase.max">
+                </div>
+
+                <div ng-style="{'margin-bottom': switchCase.fallthrough ? '0' : '15px'}">
+                    <firebot-checkbox model="switchCase.fallthrough" label="Fallthrough"
+                        tooltip="Whether or not you want to run the next case if this one matches." />
+                </div>
+
+                <effect-list effects="switchCase.effectList" trigger="{{trigger}}" trigger-meta="triggerMeta"
+                    update="effectListUpdated(effects, $index)" modalId="{{modalId}}" ng-hide="switchCase.fallthrough"></effect-list>
+
+                <div style="margin-top: 10px">
+                    <button class="btn btn-danger" ng-click="deleteCase($index)"><i
+                            class="far fa-trash"></i></button>
+                </div>
+            </plugin-switch-section>
+        </div>
+    </div>
+
+    <button class="btn btn-link" ng-click="addCase()"><i class="fal fa-plus"></i> Add Case</button>
+
+    <div style="margin-top: 15px;">
+        <plugin-switch-section label="effect.defaultCase.label" header="Default" draggable="false">
+            <effect-list effects="effect.defaultCase.effectList" trigger="{{trigger}}" trigger-meta="triggerMeta"
+                update="effectListUpdated(effects, 'default')" modalId="{{modalId}}"></effect-list>
+        </plugin-switch-section>
+    </div>
+</setting-container>
+
+<setting-container header="Options" pad-top="true">
+    <firebot-checkbox model="effect.bubbleOutputs" label="Apply effect outputs to parent list"
+        tooltip="Whether or not you want any effect outputs to be made available to the parent effect list." />
+</setting-container>

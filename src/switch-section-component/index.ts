@@ -7,7 +7,7 @@ type Scope = ng.IScope & {
 }
 
 const component: AngularJsComponent = {
-    name: "switchSection",
+    name: "pluginSwitchSection",
     template,
     bindings: {
         header: "@",
