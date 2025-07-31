@@ -1,18 +1,18 @@
-# Starter Firebot Custom Script in Typescript
+# Firebot Switch Statement
 
-### Setup
-1. Create a new repo based off this template (Click "Use this Template" above) or simply fork it
-2. `npm install`
+This Firebot plugin adds a Switch Statement effect, which is a simplified version of the "Conditional Effects" effect.
 
-### Building
-Dev:
-1. `npm run build:dev`
-- Automatically copies the compiled .js to Firebot's scripts folder.
+## Features
 
-Release:
-1. `npm run build`
-- Copy .js from `/dist`
+- Text/Number Comparison
+- Number Range
+- Fallthrough Cases
 
-### Note
-- Keep the script definition object (that contains the `run`, `getScriptManifest`, and `getDefaultParameters` funcs) in the `main.ts` file as it's important those function names don't get minimized.
-- Edit the `"scriptOutputName"` property in `package.json` to change the filename of the outputted script.
+## Installation
+
+- Download the `firebot-switch.js` file from the [releases](https://github.com/dennisrijsdijk/firebot-plugin-switch-statement/releases) page
+- In Firebot, go to Settings > Scripts and enable Custom Scripts if not already enabled
+- Click "Manage Startup Scripts", then click "Add New Script"
+- Click on the hyperlink "scripts folder" and copy the downloaded `firebot-switch.js` to the folder.
+- In Firebot, click the refresh button, then select `firebot-switch.js`
+- Click Save
