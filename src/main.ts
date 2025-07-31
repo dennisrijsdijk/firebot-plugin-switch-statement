@@ -1,5 +1,6 @@
 import { Firebot } from "@crowbartools/firebot-custom-scripts-types";
 import switchSectionComponent from "./switch-section-component";
+import registerSwitchEffect from "./switch-statement-effect";
 
 interface Params { }
 
@@ -26,7 +27,9 @@ const script: Firebot.CustomScript<Params> = {
           switchSectionComponent
         ]
       }
-    })
+    });
+
+    registerSwitchEffect(runRequest.modules);
   },
 };
 
